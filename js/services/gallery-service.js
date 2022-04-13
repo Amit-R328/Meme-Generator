@@ -12,3 +12,8 @@ let gMemes = [
 function getMemes(){
     return gMemes
 }
+
+function setLineDrag(isDrag){
+    if (gMeme.selectedIndexLine < 0) return
+    getSelectedLine().isDrag = isDrag
+}

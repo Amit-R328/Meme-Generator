@@ -63,6 +63,53 @@ function onUp() {
     // document.querySelector('input[name="txt"]').focus();
 }
 
+function onSetText(txt) {
+    setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetColor(color, part) {
+    setColor(color, part);
+    renderMeme();
+}
+
+function onSetFontSize(diff) {
+    setFontSize(+diff);
+    renderMeme();
+}
+
+function onSwitchLine() {
+    switchLine();
+    renderMeme();
+    document.querySelector('input[name="txt"]').focus();
+}
+
+function onSetFontFam(fontFam) {
+    setFontFam(fontFam);
+    renderMeme();
+}
+
+function onSetAlign(align) {
+    setAlign(align);
+    renderMeme();
+}
+
+function onAddLine() {
+    addLine();
+    renderMeme();
+}
+
+function onDeleteLine() {
+    deleteLine();
+    renderMeme();
+}
+
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+    document.querySelector('input[name="txt"]').focus();
+}
+
 function getEvPos(ev) {
     var pos = {
         x: ev.offsetX,
@@ -108,18 +155,46 @@ function setCanvasSize(index) {
 
 
 function renderMeme() {
-    console.log('render mame')
     const meme = getMeme()
     const elImgToDisplay = getElMemebyIdx(meme.selectedIndex)
-    console.log(elImgToDisplay)
     gCtx.drawImage(elImgToDisplay, 0, 0, gCanvas.width, gCanvas.height)
     if (meme.lines.length) {
         meme.lines.forEach((line, i) => {
-           drawLine(line);
-           if (i === meme.selectedLineIdx && meme.selectedLineIdx >= 0) markSelectedLine(meme.lines[meme.selectedLineIdx]);
+            drawLine(line);
+            if (i === meme.selectedIndexLine && meme.selectedIndexLine >= 0) markSelectedLine(meme.lines[meme.selectedIndexLine]);
         })
-     }
+    }
 
+}
+
+function markSelectedLine(line) {
+    const { pos: { x, y }, align, size, txt } = line;
+    const lineHeight = size + 20;
+    const lineWidth = gCtx.measureText(txt).width;
+    gCtx.beginPath();
+    if (align === 'start') {
+        gCtx.rect(x, y - (lineHeight / 2), lineWidth, lineHeight);
+    } else if (align === 'center') {
+        gCtx.rect(x - (lineWidth / 2), y - (lineHeight / 2), lineWidth, lineHeight);
+    } else if (align === 'end') {
+        gCtx.rect(x - lineWidth, y - (lineHeight / 2), lineWidth, lineHeight);
+    }
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'rgb(15,155,180)';
+    gCtx.stroke();
+    gCtx.closePath();
+    renderLineValues(line);
+}
+
+function renderLineValues(line) {
+    const ignore = ['size', 'align', 'pos', 'isDrag']
+    console.log(line);
+    Object.keys(line).forEach((prop) => {
+        if (!ignore.includes(prop)) {
+            console.log(prop);
+            document.querySelector(`.tools-bar [name="${prop}"]`).value = line[prop];
+        }
+    })
 }
 
 function drawLine({ pos: { x, y }, txt, size, fontFam, colorFill, colorStroke, align }) {
@@ -131,7 +206,7 @@ function drawLine({ pos: { x, y }, txt, size, fontFam, colorFill, colorStroke, a
     gCtx.fillStyle = colorFill;
     gCtx.fillText(txt, x, y);
     gCtx.strokeText(txt, x, y);
- }
+}
 
 function getElMemebyIdx(index) {
     return document.querySelector(`[src="./img/${index}.jpg"]`)

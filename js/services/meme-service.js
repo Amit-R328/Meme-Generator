@@ -1,6 +1,8 @@
 'use strict'
 
 const STORAGE_KEY = 'memesDB'
+let isLine = true;
+let gMemesDATAs;
 
 var gMeme = {
     selectedIndex: 0,
@@ -71,8 +73,68 @@ function moveLine(dx, dy) {
     getSelectedLine().pos.y += dy;
 }
 
+function setLineTxt(txt) {
+    if (gMeme.selectedIndexLine < 0) return
+    getSelectedLine().txt = txt
+}
+
+function setColor(color, part) {
+    if (gMeme.selectedIndexLine < 0) return;
+    getSelectedLine()[part] = color;
+}
+
+function setFontSize(diff) {
+    const line = getSelectedLine();
+    if (gMeme.selectedIndexLine < 0) return;
+    if ((line.size + diff) === 5 ||
+        (line.size + diff) === 100) return;
+    line.size += diff
+}
+
+function setFontFam(fontFam) {
+    if (gMeme.selectedIndexLine < 0) return;
+    getSelectedLine().fontFam = fontFam;
+}
+
+function setAlign(align) {
+    if (gMeme.selectedIndexLine < 0) return;
+    getSelectedLine().align = align;
+    let x;
+    if (align === 'start') x = 10;
+    else if (align === 'center') x = gCanvas.width / 2;
+    else if (align === 'end') x = gCanvas.width - 10;
+    getSelectedLine().pos.x = x;
+}
+
+function addLine(txt = '*meme text*') {
+    const line = {
+        txt,
+        size: 40,
+        align: 'center',
+        pos: {
+            x: gCanvas.width / 2,
+            y: gCanvas.height / 2
+        },
+        fontFam: 'impact',
+        colorFill: '#ffffff',
+        colorStroke: '#000000',
+        isDrag: false
+    }
+    if (isLine) line.pos.y = gCanvas.height - 50;
+    isLine = false;
+    gMeme.lines.push(line);
+    switchLine(gMeme.lines.length - 1);
+}
+
+function deleteLine() {
+    if (gMeme.selectedIndexLine < 0) return;
+    if (!getSelectedLine()) return;
+    gMeme.lines.splice(gMeme.selectedIndexLine, 1);
+    if (!gMeme.lines.length) gMeme.selectedIndexLine = - 1;
+}
+
 function setLineDrag(isDrag) {
     if (gMeme.selectedIndexLine < 0) return;
     getSelectedLine().isDrag = isDrag;
- }
+}
 
