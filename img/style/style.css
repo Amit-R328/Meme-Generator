@@ -29,6 +29,15 @@ body {
     padding: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 body.editor-page::before {
     content: "";
     position: absolute;
@@ -50,6 +59,38 @@ header {
     height: 2.187rem;
 }
 
+nav {
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    background-color: #383b42;
+    z-index: 2;
+}
+
+.memes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    align-items: center;
+    padding: 35px 40px 15px;
+}
+
+.meme {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+}
+
+.meme img {
+    display: block;
+    width: 100%;
+}
 
 
 .hidden {

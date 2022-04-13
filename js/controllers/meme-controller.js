@@ -51,7 +51,7 @@ function renderMeme(){
     const elImgToDisplay =  getElMemebyIdx(meme.selectedIndex)
     console.log(elImgToDisplay)
     gCtx.drawImage(elImgToDisplay, 0, 0, gCanvas.width, gCanvas.height)
-
+    
 }
 
 function getElMemebyIdx(index){
