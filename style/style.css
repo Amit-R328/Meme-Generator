@@ -29,6 +29,28 @@ body {
     padding: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+button {
+  font-family: "poppins-light";
+  border: none;
+  border-radius: 4em;
+  cursor: pointer;
+  padding: 0;
+}
+
+canvas {
+  border: 6px solid rgba(255, 255, 255, 0.082);
+  border-radius: 25px;
+}
+
 body.editor-page::before {
     content: "";
     position: absolute;
