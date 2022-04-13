@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme-Generator</title>
+    <script src="https://kit.fontawesome.com/362d0183c1.js" crossorigin="anonymous"></script>
     <link href="./style/style.css" rel="stylesheet">
 </head>
 <body onload="onInit()">
@@ -32,23 +33,23 @@
         <div class="tools-bar flex">
             <input type="text" name="txt" oninput="onSetText(this.value)"
             <div class="lines-edit">
-                <button onclick="onSwitchLine()" class="switch-btn editor-btn">switch</button>
-                <button onclick="onAddLine()" class="add-btn editor-btn">add</button>
-                <button onclick="onDeleteLine()" class="delete-btn editor-btn">delete</button>
+                <button onclick="onSwitchLine()" class="fas fa-random switch-btn editor-btn"></button>
+                <button onclick="onAddLine()" class="fas fa-plus add-btn editor-btn"></button>
+                <button onclick="onDeleteLine()" class="fas fa-trash-alt delete-btn editor-btn"></button>
             </div>
             <div class="font-edit">
-                <button onclick="onSetFontSize(5)" class="editor-btn">+</button>
-                <button onclick="onSetFontSize(-5)" class="editor-btn">-</button>
-                <button class="editor-btn" onclick="onSetAlign('start')">start</button>
-                <button class="editor-btn" onclick="onSetAlign('center')">center</button>
-                <button class="editor-btn" onclick="onSetAlign('end')">end</button>
+                <button onclick="onSetFontSize(5)" class="fas fa-expand-alt editor-btn"></button>
+                <button onclick="onSetFontSize(-5)" class="fas fa-compress-alt editor-btn"></button>
+                <button class="fas fa-align-left editor-btn" onclick="onSetAlign('start')"></button>
+                <button class="fas fa-align-center editor-btn" onclick="onSetAlign('center')"></button>
+                <button class="fas fa-align-right editor-btn" onclick="onSetAlign('end')"></button>
                 <select name="fontFam" class="editor-btn" onchange="onSetFontFam(this.value)">
                     <option value="impact">Impact</option>
                     <option value="arial">Arial</option>
                 </select>
-                <input class="editor-btn" type="color" name="colorFill"
+                <input class="fas fa-fill-drip editor-btn" type="color" name="colorFill"
                  oninput="onSetColor(this.value,'colorFill')">
-                <input class="editor-btn" type="color" name="colorStroke"
+                <input class="fas fa-square editor-btn" type="color" name="colorStroke"
                  oninput="onSetColor(this.value,'colorStroke')"
             </div>
         </div>
