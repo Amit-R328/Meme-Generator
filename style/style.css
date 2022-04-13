@@ -1,0 +1,32 @@
+@font-face {
+    font-family: poppins-light;
+    src: url('./fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: poppins-medium;
+    src: url('./fonts/Poppins-Medium.ttf')
+}
+
+:root {
+    --main-gradient: linear-gradient(
+        90deg
+        rgba(15,155,180,1) 0%
+        rgba(48,187,114,1) 100%
+    );
+    --box-shadow: -2px 3px 7px 0px #000000bf;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.editor-page::before {
+    content: "";
+    position: absolute;
+    top: 100px;
+    left: -5%;
+    z-index: -100;
+    width: 100%;
+    height: 100%;
+}
