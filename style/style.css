@@ -54,6 +54,18 @@ canvas {
     border-radius: 25px;
 }
 
+@media (max-width: 680px) {
+    .canvas-container {
+        margin: 6px;
+    }
+}
+
+@media (max-width: 530px){
+    .canvas-container {
+        width: 90%;
+    }
+}
+
 input {
     font-family: "poppins-light";
 }
@@ -109,6 +121,34 @@ nav button.active {
     height: 2.187rem;
 }
 
+@media (min-width:680px) {
+    body {
+        padding: 6px;
+    }
+
+    header {
+        margin: 9px 0;
+        border-radius: 4em;
+    }
+
+    nav {
+        flex-direction: row;
+        position: relative;
+        height: auto;
+        transform: translateX(0%);
+        background: transparent;
+        z-index: 0;
+    }
+
+    nav button {
+        width: auto;
+        margin-inline-start: 20px;
+        border-radius: 4em;
+        box-shadow: none;
+        padding: 3px 22px;
+    }
+}
+
 .memes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -130,10 +170,24 @@ nav button.active {
     width: 100%;
 }
 
+@media (max-width: 530px) {
+    .memes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
 .editor {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+@media (min-width: 1050px) {
+    .editor {
+        flex-direction: row;
+    }
 }
 
 .editor>* {
@@ -237,6 +291,23 @@ select[name="fontFam"] {
     transform: translate(-50%, -50%);
     color: white;
     mix-blend-mode: difference;
+}
+
+@media (max-width:460px) {
+    .tools-bar {
+        padding: 0 10px;
+    }
+
+    .font-edit {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .share-btns .editor-btn,
+    .share-btns a {
+        font-size: 1rem;
+    }
 }
 
 .hidden {
