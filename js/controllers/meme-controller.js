@@ -5,6 +5,8 @@ let gCtx
 let gStartPos;
 let gAspectRatio = 1
 const gTouchEvs = ['touchmove', 'tuochend', 'touchstart'];
+const gStickers = ['🥰','🚀','🎉']
+let gStickersIdx = 0
 
 function initMeme(index) {
     console.log('initMeme')
@@ -13,10 +15,24 @@ function initMeme(index) {
     gCtx = gCanvas.getContext("2d")
     addMouseListeners()
     addTouchListeners()
+    renderStickers()
     setMeme(index)
     onLoadMeme()
     resizeCanvas()
     window.addEventListener('resize', () => resizeCanvas());
+}
+
+function renderStickers(){
+    let strHtml = ''
+    for (var i = gStickersIdx; i < gStickers.length; i++) {
+        strHtml += `<button class="sticker" onclick="onStickerClick('${gStickers[i]}')">${gStickers[i]}</button>`
+     }
+    document.querySelector('.stickers').innerHTML = strHtml
+}
+
+function onStickerClick(sticker){
+    addLine(sticker)
+    renderMeme
 }
 
 function addMouseListeners() {
@@ -29,6 +45,14 @@ function addTouchListeners() {
     gCanvas.addEventListener('touchmove', onMove)
     gCanvas.addEventListener('touchstart', onDown)
     gCanvas.addEventListener('touchend', onUp)
+}
+
+function onSaveMeme(){
+    renderMeme()
+    const url = gCanvas.toDataURL()
+    saveMeme(url)
+    goTo('saved')
+    renderSaved()
 }
 
 function onDown(ev) {

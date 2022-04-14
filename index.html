@@ -16,6 +16,8 @@
         <img class="logo" src="./img/LOGO.png">
         <nav class="flex">
             <button class="gallery-btn" onclick="goTo('gallery')">Gallery</button>
+            <button class="saved-btn" onclick="goTo('saved')">Saved</button>
+            <button class="Flexible-btn" onClick="onFlexible()">Flexible</button>
         </nav>
 
     </header>
@@ -28,45 +30,64 @@
     </section>
 
     <!-- editor section -->
-        <section class="editor main-layout flex hidden">
-            <div class="canvas-container">
-                <canvas width="500" height="500" id="canvas"></canvas>
+    <section class="editor main-layout flex hidden">
+        <div class="canvas-container">
+            <canvas width="500" height="500" id="canvas"></canvas>
+        </div>
+        <div class="tools-bar flex">
+            <input type="text" name="txt" oninput="onSetText(this.value)">
+            <div class="lines-edit">
+                <button onclick="onSwitchLine()" class="fas fa-random switch-btn editor-btn"></button>
+                <button onclick="onAddLine()" class="fas fa-plus add-btn editor-btn"></button>
+                <button onclick="onDeleteLine()" class="fas fa-trash-alt delete-btn editor-btn"></button>
             </div>
-            <div class="tools-bar flex">
-                <input type="text" name="txt" oninput="onSetText(this.value)">
-                <div class="lines-edit">
-                    <button onclick="onSwitchLine()" class="fas fa-random switch-btn editor-btn"></button>
-                    <button onclick="onAddLine()" class="fas fa-plus add-btn editor-btn"></button>
-                    <button onclick="onDeleteLine()" class="fas fa-trash-alt delete-btn editor-btn"></button>
+            <div class="font-edit">
+                <button onclick="onSetFontSize(5)" class="fas fa-expand-alt editor-btn"></button>
+                <button onclick="onSetFontSize(-5)" class="fas fa-compress-alt editor-btn"></button>
+                <button class="fas fa-align-left editor-btn" onclick="onSetAlign('start')"></button>
+                <button class="fas fa-align-center editor-btn" onclick="onSetAlign('center')"></button>
+                <button class="fas fa-align-right editor-btn" onclick="onSetAlign('end')">F</button>
+                <select name="fontFam" class="editor-btn" onchange="onSetFontFam(this.value)">
+                    <option value="impact">Impact</option>
+                    <option value="arial">Arial</option>
+                </select>
+                <input class="fas fa-fill-drip editor-btn" type="color" name="colorFill"
+                    oninput="onSetColor(this.value,'colorFill')" />
+                <input class="fas fa-square editor-btn" type="color" name="colorStroke"
+                    oninput="onSetColor(this.value,'colorStroke')" />
+            </div>
+            <div class="stickers-container">
+                <div class="stickers">
+                    
                 </div>
-                <div class="font-edit">
-                    <button onclick="onSetFontSize(5)" class="fas fa-expand-alt editor-btn"></button>
-                    <button onclick="onSetFontSize(-5)" class="fas fa-compress-alt editor-btn"></button>
-                    <button class="fas fa-align-left editor-btn" onclick="onSetAlign('start')"></button>
-                    <button class="fas fa-align-center editor-btn" onclick="onSetAlign('center')"></button>
-                    <button class="fas fa-align-right editor-btn" onclick="onSetAlign('end')">F</button>
-                    <select name="fontFam" class="editor-btn" onchange="onSetFontFam(this.value)">
-                        <option value="impact">Impact</option>
-                        <option value="arial">Arial</option>
-                    </select>
-                    <input class="fas fa-fill-drip editor-btn" type="color" name="colorFill"
-                     oninput="onSetColor(this.value,'colorFill')">
-                    <input class="fas fa-square editor-btn" type="color" name="colorStroke"
-                     oninput="onSetColor(this.value,'colorStroke')"/> 
-            </div> 
-    </div> 
-    </section> 
-<!-- footer -->
-<footer>
+            </div>
+            <div class="save-btns">
+                <button class="share-btn editor-btn">Share</button>
+                <button class="save-btn editor-btn" onclick="onSaveMeme()">Save</button>
+                <button class="download-btn editor-btn"><a href="#">Download</a></button>
+            </div>
+        </div>
 
-</footer>
+        
+    </section>
 
-            <!-- scripts -->
-            <script src="./js/services/gallery-service.js"></script>
-            <script src="./js/services/meme-service.js"></script>
-            <script src="./js/controllers/gallery-controller.js"></script>
-            <script src="./js/controllers/meme-controller.js"></script>
-            <script src="./js/main.js"></script>
+    <!-- SAVED -->
+    <section class="saved hidden">
+        <div class="memes"></div>
+    </section>
+    <!-- footer -->
+    <footer>
+
+    </footer>
+
+    <!-- scripts -->
+    <script src="./js/services/util-service.js"></script>
+    <script src="./js/services/storage-services.js"></script>
+    <script src="./js/services/gallery-service.js"></script>
+    <script src="./js/services/meme-service.js"></script>
+    <script src="./js/controllers/gallery-controller.js"></script>
+    <script src="./js/controllers/meme-controller.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

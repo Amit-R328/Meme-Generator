@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'memesDB'
 let isLine = true;
-let gMemesDATAs;
+let gMemesDATAs = [];
 
 var gMeme = {
     selectedIndex: 0,
@@ -62,6 +62,15 @@ function switchLine(lineIdx) {
 
 function setMeme(index) {
     gMeme.selectedIndex = index
+}
+
+function saveMeme(url){
+    gMemesDATAs.push(url)
+    saveToStorage(STORAGE_KEY, gMemesDATAs)
+}
+
+function getMemesData(){
+    return gMemesDATAs
 }
 
 function getSelectedLine() {

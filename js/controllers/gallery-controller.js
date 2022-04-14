@@ -13,6 +13,13 @@ function renderGallery(){
     elMemesDiv.innerHTML = imgHtml.join('')
 }
 
+function renderSaved(){
+    const MemeDatas = getMemesData()
+    let strHtml = []
+    strHtml = MemeDatas.map((memeData, i) => `<div class="meme"><img src="${memeData}"></div>`)
+    document.querySelector('.saved .memes').innerHTML = strHtml.join('')
+}
+
 function onPickMeme(index){
     openEdit()
     initMeme(index)
