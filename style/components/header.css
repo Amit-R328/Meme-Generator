@@ -1,0 +1,35 @@
+header {
+    background: var(--main-gradient);
+    display: inline-block;
+    width: 100%;
+    padding: 20px 18px 15px;
+    margin: 9px 0;
+    border-radius: 4em;
+}
+
+nav {
+    flex-direction: column;
+    z-index: 2;
+    transition: transform 0.7s;
+}
+
+nav button {
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    width: 200px;
+    border-radius: 4em;
+    margin-inline-start: 0;
+    padding: 21px;
+    font-family: "poppins-medium";
+    font-size: 1.3rem
+}
+
+nav button:hover,
+nav button.active {
+    background-color: #fff;
+    color: #21ac91;
+}
+
+.logo {
+    height: 2.187rem;
+}
