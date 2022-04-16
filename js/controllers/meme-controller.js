@@ -150,7 +150,6 @@ function getEvPos(ev) {
 }
 
 function resizeCanvas() {
-    console.log('resize Canvas')
     const elContainer = document.querySelector('.canvas-container')
     gCanvas.width = elContainer.offsetWidth
     gCanvas.height = gCanvas.width
@@ -162,7 +161,6 @@ function onLoadMeme() {
     const meme = getMeme()
     const image = new Image()
     image.src = `./img/${meme.selectedIndex}.jpg`
-    console.log(image.src)
     image.onload = () => {
         renderMeme()
     }
@@ -212,13 +210,16 @@ function markSelectedLine(line) {
 
 function renderLineValues(line) {
     const ignore = ['size', 'align', 'pos', 'isDrag']
-    console.log(line);
     Object.keys(line).forEach((prop) => {
         if (!ignore.includes(prop)) {
-            console.log(prop);
             document.querySelector(`.tools-bar [name="${prop}"]`).value = line[prop];
         }
     })
+}
+
+function onDownload(elLink){
+    let img = gCanvas.toDataURL('image/jpeg')
+    elLink.href = img
 }
 
 function drawLine({ pos: { x, y }, txt, size, fontFam, colorFill, colorStroke, align }) {
