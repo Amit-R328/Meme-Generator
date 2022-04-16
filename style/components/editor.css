@@ -121,3 +121,47 @@ select[name="fontFam"] {
     color: white;
     mix-blend-mode: difference;
 }
+
+.stickers-container {
+    justify-content: space-between;
+    background-color: #fff;
+    min-width: 305px;
+    border-radius: 4em;
+    padding: 5px 15px;
+}
+
+.sticker{
+    font-size: 30px;
+    background: transparent;
+    margin: auto 10px;
+}
+
+.save-btns .editor-btn {
+    flex: 1;
+    color: white;
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+  
+  .share-btn {
+    background-color: #8f44bb;
+    box-shadow: inset 0px -3px 1px #632687, inset 0px 3px 1px #bf84da;
+  }
+  
+  .save-btn {
+    background-color: rgb(57, 189, 77);
+    box-shadow: inset 0px -3px 1px #015d33, inset 0px 3px 1px #5fd374;
+  }
+  
+  .download-btn {
+    background-color: #1e7cd3;
+    box-shadow: inset 0px -3px 1px #165c9c, inset 0px 3px 1px #54b2e8;
+  }
+  
+  .download-btn a {
+    color: white;
+    background: transparent;
+    width: 100%;
+    font-weight: 400;
+    font-size: 1.3rem;
+  }

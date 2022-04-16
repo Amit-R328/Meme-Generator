@@ -8,7 +8,7 @@ header {
 }
 
 nav {
-    flex-direction: column;
+    flex-direction: row;
     z-index: 2;
     transition: transform 0.7s;
 }
