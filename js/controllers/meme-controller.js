@@ -222,6 +222,32 @@ function onDownload(elLink){
     elLink.href = img
 }
 
+function onShare(){
+    let img = gCanvas.toDataURL('image/jpeg')
+    const formData = new FormData()
+    formData.append('img', img)
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then((url) => {
+            saveMeme(url)
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}
+
+function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+    document.querySelector('.share-btn').innerHTML = `
+    <ahref="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">   
+    share
+    </a>`    
+}
+
 function drawLine({ pos: { x, y }, txt, size, fontFam, colorFill, colorStroke, align }) {
     gCtx.textBaseline = 'middle';
     gCtx.textAlign = align;
