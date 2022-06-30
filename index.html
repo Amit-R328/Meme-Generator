@@ -14,15 +14,29 @@
     <!-- header -->
     <header class="flex space-between align-item-center">
         <img class="logo" src="./img/LOGO.png">
+        <button class="fas fa-bars" onclick="onToggleMenu()"></button>
         <nav class="flex">
+            <button class="fas fa-times" onclick="onToggleMenu()"></button>
             <button class="gallery-btn" onclick="goTo('gallery')">Gallery</button>
             <button class="saved-btn" onclick="goTo('saved')">Saved</button>
+            <button class="flexible" onclick="isFlexible()">Flexible</button>
         </nav>
 
     </header>
 
     <!-- gallery section -->
     <section class="gallery">
+        <div class="meme-tools flex">
+            <div class="search-line flex">
+                <input type="text" list="keywordsData" oninput="onKeyword(this.value)" placeholder="Search">
+                <datalist id="keywordsData"></datalist>
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="categories-container flex">
+                <div class="filter-words-container flex"></div>
+                <button class="special-btn more-btn" onclick="onMoreKeywords(this)">More</button>
+            </div>
+        </div>
         <div class="memes">
 
         </div>
@@ -74,10 +88,8 @@
     <section class="saved hidden">
         <div class="memes"></div>
     </section>
-    <!-- footer -->
-    <footer>
-
-    </footer>
+    <!-- NAVIGATION MENU -->
+    <div class="main-screen" onclick="onToggleMenu()"></div>
 
     <!-- scripts -->
     <script src="./js/services/util-service.js"></script>

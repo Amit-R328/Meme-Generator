@@ -5,11 +5,11 @@ let gCtx
 let gStartPos;
 let gAspectRatio = 1
 const gTouchEvs = ['touchmove', 'tuochend', 'touchstart'];
-const gStickers = ['🥰','🚀','🎉']
+const gStickers = ['🥰', '🚀', '🎉']
 let gStickersIdx = 0
+let gTxt = ''
 
 function initMeme(index) {
-    console.log('initMeme')
     gCanvas = document.querySelector('#canvas')
     setCanvasSize(index)
     gCtx = gCanvas.getContext("2d")
@@ -18,19 +18,25 @@ function initMeme(index) {
     renderStickers()
     setMeme(index)
     onLoadMeme()
-    resizeCanvas()
+    if (isFlexible) {
+        resizeCanvas(true)
+    } else {
+        resizeCanvas()
+    }
     window.addEventListener('resize', () => resizeCanvas());
 }
 
-function renderStickers(){
+
+
+function renderStickers() {
     let strHtml = ''
     for (var i = gStickersIdx; i < gStickers.length; i++) {
         strHtml += `<button class="sticker" onclick="onStickerClick('${gStickers[i]}')">${gStickers[i]}</button>`
-     }
+    }
     document.querySelector('.stickers').innerHTML = strHtml
 }
 
-function onStickerClick(sticker){
+function onStickerClick(sticker) {
     addLine(sticker)
     renderMeme
 }
@@ -47,7 +53,7 @@ function addTouchListeners() {
     gCanvas.addEventListener('touchend', onUp)
 }
 
-function onSaveMeme(){
+function onSaveMeme() {
     renderMeme()
     const url = gCanvas.toDataURL()
     saveMeme(url)
@@ -180,13 +186,13 @@ function renderMeme() {
     const meme = getMeme()
     const elImgToDisplay = getElMemebyIdx(meme.selectedIndex)
     gCtx.drawImage(elImgToDisplay, 0, 0, gCanvas.width, gCanvas.height)
+
     if (meme.lines.length) {
         meme.lines.forEach((line, i) => {
             drawLine(line);
             if (i === meme.selectedIndexLine && meme.selectedIndexLine >= 0) markSelectedLine(meme.lines[meme.selectedIndexLine]);
         })
     }
-
 }
 
 function markSelectedLine(line) {
@@ -217,12 +223,12 @@ function renderLineValues(line) {
     })
 }
 
-function onDownload(elLink){
+function onDownload(elLink) {
     let img = gCanvas.toDataURL('image/jpeg')
     elLink.href = img
 }
 
-function onShare(){
+function onShare() {
     let img = gCanvas.toDataURL('image/jpeg')
     const formData = new FormData()
     formData.append('img', img)
@@ -245,19 +251,20 @@ function onSuccess(uploadedImgUrl) {
     document.querySelector('.share-btn').innerHTML = `
     <ahref="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">   
     share
-    </a>`    
+    </a>`
 }
 
 function drawLine({ pos: { x, y }, txt, size, fontFam, colorFill, colorStroke, align }) {
     gCtx.textBaseline = 'middle';
     gCtx.textAlign = align;
     gCtx.lineWidth = 1;
-    gCtx.strokeStyle = colorStroke;
     gCtx.font = `${size}px ${fontFam}`;
+    gCtx.strokeStyle = colorStroke;
     gCtx.fillStyle = colorFill;
     gCtx.fillText(txt, x, y);
     gCtx.strokeText(txt, x, y);
 }
+
 
 function getElMemebyIdx(index) {
     return document.querySelector(`[src="./img/${index}.jpg"]`)

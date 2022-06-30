@@ -9,20 +9,27 @@ header {
 
 nav {
     flex-direction: row;
-    z-index: 2;
-    transition: transform 0.7s;
+    position: relative;
+    height: auto;
+
+    transform: translateX(0%);
+    background: transparent;
+    z-index: 0;
 }
 
 nav button {
-    background-color: rgba(255, 255, 255, 0);
-    color: #fff;
-    width: 200px;
+    width: auto;
+    margin-inline-start: 20px;
     border-radius: 4em;
-    margin-inline-start: 0;
-    padding: 21px;
-    font-family: "poppins-medium";
-    font-size: 1.3rem
+    box-shadow: none;
+    padding: 3px 22px;
 }
+
+nav.open {
+    transform: translateX(0);
+}
+
+
 
 nav button:hover,
 nav button.active {
@@ -33,3 +40,17 @@ nav button.active {
 .logo {
     height: 2.187rem;
 }
+
+.fa-bars {
+    padding: 10px 10px 8px;
+    font-size: 1.3rem;
+    display: none;
+}
+
+.fa-times {
+    display: none;
+}
+
+
+  
+  

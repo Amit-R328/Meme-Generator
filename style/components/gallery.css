@@ -1,3 +1,10 @@
+.gallery {
+    margin: 7px;
+    padding: 15px;
+    background-color: #383b42;
+    border-radius: 10px;
+}
+
 .memes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -17,4 +24,84 @@
 .meme img {
     display: block;
     width: 100%;
+}
+
+.meme-tools {
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.meme-tools > * {
+    flex-basis: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-line {
+    padding: 14px 25px;
+    background-color: #22252c;
+    border-radius: 4em;
+}
+
+.search-line input {
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    padding: 0 25px;
+    color: #76787c;
+    width: 100%;
+}
+
+.search-line input:focus-visible {
+    outline: none;
+}
+
+.fa-search {
+    border-radius: 0;
+    padding: 1px;
+    font-size: 30px;
+    background: var(--main-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.categories-container {
+    gap: 20px;
+}
+
+.filter-words-container {
+    background-color: #87898d;
+    flex-grow: 1;
+    box-shadow: var(--box-shadow);
+    flex-wrap: wrap;
+    border-radius: 4em;
+    align-items: center;
+    padding: 9px 26px;
+    justify-content: space-around;
+}
+
+.filter-words-container button {
+    color: white;
+    margin: 0 7px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.filter-words-container button::first-letter {
+    text-transform: uppercase;
+}
+
+.filter-words-container button:hover {
+    text-shadow: 0 0 8px white;
+}
+
+.special-btn {
+    background: var(--main-gradient);
+    color: white;
+    font-size: 2rem;
+    box-shadow: var(--box-shadow);
+    margin: auto;
+    transition: transform 0.3s;
+    padding: 5px 22px;
 }

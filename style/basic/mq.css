@@ -2,6 +2,56 @@
     .canvas-container {
         margin: 6px;
     }
+
+    .fa-bars {
+        display: block;
+    }
+    
+    .fa-times {
+        display: block;
+    }
+
+    nav button {
+        background-color: rgba(255, 255, 255, 0);
+        color: #fff;
+        width: 200px;
+        border-radius: 4em;
+        margin-inline-start: 0;
+        padding: 21px;
+        font-family: "poppins-medium";
+        font-size: 1.3rem
+    }
+
+    nav {
+        flex-direction: column;
+        position: fixed;
+        height: 100vh;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        background-color: #383b42;
+        z-index: 2;
+        transition: transform 0.7s;
+    }
+
+    .main-screen {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(31, 31, 31, 0.5);
+        z-index: 1;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        transition: opacity 0.5s;
+    }
+
+    .main-screen.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 @media (max-width: 530px){
@@ -9,6 +59,7 @@
         width: 90%;
     }
 }
+
 
 @media (min-width:680px) {
     body {

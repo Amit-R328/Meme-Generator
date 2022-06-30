@@ -26,6 +26,25 @@ function getMeme() {
     return gMeme
 }
 
+function getRandomTxt(){
+    const randomLines = [
+        'aspire to inspire',
+        'may the force be with you',
+        'could always be worse',
+        'have a nice day!',
+        'i\'m flexible',
+        'you are flexible',
+        'one cannot simply',
+        'make meme generator',
+        'i eat falafel',
+        'i hate falafel',
+        'hello world',
+        'dont trust this meme'
+    ]
+    let index = getRandomIntInclusive(0, randomLines.length -1)
+    return randomLines[index]
+}
+
 function setLinesPos(center) {
     gMeme.lines.forEach(line => line.pos.x = center)
 }
