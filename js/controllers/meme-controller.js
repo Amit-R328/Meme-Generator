@@ -38,7 +38,7 @@ function renderStickers() {
 
 function onStickerClick(sticker) {
     addLine(sticker)
-    renderMeme
+    renderMeme()
 }
 
 function addMouseListeners() {

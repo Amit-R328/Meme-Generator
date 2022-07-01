@@ -94,7 +94,7 @@ function renderSaved(){
 
 function onPickMeme(index, isFlexible = false){
     openEdit()
-    initMeme(index, true)
+    initMeme(index, isFlexible)
 }
 
 function openEdit(){
