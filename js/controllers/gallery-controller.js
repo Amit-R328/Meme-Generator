@@ -21,6 +21,25 @@ function renderGallery(keyword){
     if (!keyword) document.querySelector('.search-line input').value = ''
 }
 
+function onImgInput(ev) {
+    loadImageFromInput(ev, DrawUploadedImg)
+}
+
+function DrawUploadedImg(img) {
+    document.querySelector('.test-img').src = img.src
+    onPickMeme(0)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader()
+    reader.onload = (event) => {
+        let img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
 function renderKeywords(isMoreOpen){
     const keyWordsSet = getKeyword()
     let keywordsNum = (isMoreOpen) ? keyWordsSet.length : 8
@@ -41,6 +60,12 @@ function onkeyword(keyWord) {
     document.querySelector('.search-line input').value = keyWord
     renderKeywords()
     renderGallery(keyWord)
+}
+
+function onMoreKeywords(elMoreBtn){
+    const isOpen = (elMoreBtn.innerText === 'More')
+    elMoreBtn.innerText = (isOpen) ? 'Less' : 'More'
+    renderKeywords(isOpen)
 }
 
 function onToggleMenu() {

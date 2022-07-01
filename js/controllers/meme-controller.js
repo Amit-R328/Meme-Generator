@@ -174,17 +174,26 @@ function onLoadMeme() {
 
 
 function setCanvasSize(index) {
-
-    const elMeme = getElMemebyIdx(index).src
-    const canvasWidth = elMeme.offsetWidth
-    const canvasHeight = (elMeme.offsetHeight * 500) / canvasWidth
+    const elTestImg = document.querySelector('.test-img')
+    elTestImg.style.display = 'inline'
+    if(index){
+        const elMeme = getElMemebyIdx(index).src
+        elTestImg.src = elMeme
+    }
+    // const canvasWidth = elMeme.offsetWidth
+    const imgWidth = elTestImg.offsetWidth
+    const imgHeight = elTestImg.offsetHeight
+    const canvasHeight = (imgHeight * 500) / imgWidth
     gCanvas.height = canvasHeight
+    elTestImg.style.display = 'none'
+    gAspectRatio = imgWidth/imgHeight
 }
 
 
 function renderMeme() {
     const meme = getMeme()
-    const elImgToDisplay = getElMemebyIdx(meme.selectedIndex)
+    let elImgToDisplay = getElMemebyIdx(meme.selectedIndex)
+    if(!meme.selectedIndex) elImgToDisplay = document.querySelector('.test-img')
     gCtx.drawImage(elImgToDisplay, 0, 0, gCanvas.width, gCanvas.height)
 
     if (meme.lines.length) {
